@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zipommy Dealers – Android Apps & Games</title>
+
+    <!-- ==== Google Font (optional) ==== -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+        /* ==== Global Styles ==== */
+        :root {
+            --primary-green: #28a745;
+            --dark-bg: #111;
+            --light-bg: #fff;
+            --text-dark: #222;
+            --text-light: #f9f9f9;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light-bg);
+        }
+        a { color: var(--primary-green); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* ==== Header / Nav ==== */
+        header {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .container { width: 90%; max-width: 1200px; margin: auto; }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-green); }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a { color: var(--text-light); font-weight: 500; }
+        .nav-toggle { display: none; cursor: pointer; font-size: 1.5rem; }
+
+        /* ==== Hero Section ==== */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                        url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1500&q=80')
+                        center/cover no-repeat;
+            color: var(--text-light);
+            text-align: center;
+            padding: 6rem 1rem;
+        }
+        .hero h1 { font-size: 2.5rem; margin-bottom: .5rem; }
+        .hero p { font-size: 1.2rem; margin-bottom 1.5rem; }
+        .hero .cta-btn {
+            background: var(--primary-green);
+            color: #fff;
+            padding: .75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background .3s;
+        }
+        .hero .cta-btn:hover { background: #218838; }
+
+        /* ==== Sections ==== */
+        section { padding: 4rem 0; }
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--primary-green);
+        }
+
+        /* About */
+        .about { background: var(--light-bg); }
+        .about p { max-width: 800px; margin: auto; text-align: center; }
+
+        /* Projects */
+        .projects .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+        .project-card {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+            background: var(--light-bg);
+            transition: transform .2s, box-shadow .2s;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,.15);
+        }
+        .project-card img { height: 180px; object-fit: cover; }
+        .project-card .info {
+            padding: 1rem;
+        }
+        .project-card .info h3 { margin-bottom: .5rem; color: var(--text-dark); }
+
+        /* Reviews */
+        .reviews .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+        .review-card {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            padding: 1.5rem;
+            border-radius: 6px;
+            position: relative;
+        }
+        .review-card::before {
+            content: "“";
+            font-size: 3rem;
+            position: absolute;
+            top: -.5rem;
+            left: .5rem;
+            opacity: .2;
+        }
+        .review-card h4 { margin-top: .5rem; font-weight: 500; }
+
+        /* Contact */
+        .contact form {
+            max-width: 600px;
+            margin: auto;
+            display: grid;
+            gap: 1rem;
+        }
+        .contact input,
+        .contact textarea {
+            width: 100%;
+            padding: .75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .contact button {
+            background: var(--primary-green);
+            color: #fff;
+            border: none;
+            padding: .75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .contact button:hover { background: #218838; }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            padding: 2rem 0;
+            text-align: center;
+            font-size: .9rem;
+        }
+        footer a { color: var(--primary-green); margin: 0 .5rem; }
+
+        /* ==== Scroll‑to‑Top Button ==== */
+        #topBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-green);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 1.5rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        /* ==== Responsive Adjustments ==== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; background: var(--dark-bg); position: absolute; top: 100%; left: 0; width: 100%; }
+            .nav-links a { padding: .75rem; border-top: 1px solid #333; }
+            .nav-toggle { display: block; color: var(--text-light); }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">Zipommy Dealers</div>
+            <div class="nav-links" id="navLinks">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">&#9776;</div>
+        </nav>
+    </div>
+</header>
+
+<!-- ==== HERO ==== -->
+<section class="hero">
+    <div class="container">
+        <h1>We Build Android Apps & Games</h1>
+        <p>From concept to launch – fast, secure, and beautifully crafted.</p>
+        <a href="#contact" class="cta-btn">Start Your Project</a>
+    </div>
+</section>
+
+<!-- ==== ABOUT ==== -->
+<section id="about" class="about">
+    <div class="container">
+        <h2 class="section-title">Who We Are</h2>
+        <p>
+            Zipommy Dealers is a boutique studio specializing in native Android applications
+            and immersive mobile games. Our team blends cutting‑edge technology with creative storytelling
+            to deliver products that delight users and drive business growth.
+        </p>
+    </div>
+</section>
+
+<!-- ==== SAMPLE PROJECTS ==== -->
+<section id="projects" class="projects">
+    <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="grid">
+            <!-- Project Card 1 -->
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1581091870627-1e0b5d6b2c8c?auto=format&fit=crop&w=400&q=80"
+                     alt="Fitness App">
+                <div class="info">
+                    <h3>FitPulse – Health Tracker</h3>
+                    <p>A sleek fitness tracker with real‑time heart‑rate monitoring and personalized workout plans.</p>
+                </div>
+            </div>
+            <!-- Project Card 2 -->
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80"
+                     alt="Puzzle Game">
+                <div class="info">
+                    <h3>PuzzleQuest – Brain Teaser</h3>
+                    <p>An addictive puzzle adventure that challenges logic and rewards creativity.</p>
+                </div>
+            </div>
+            <!-- Project Card 3 -->
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1556157382-97c5d1c5c0b5?auto=format&fit=crop&w=400&q=80"
+                     alt="E‑commerce App">
+                <div class="info">
+                    <h3>ShopSphere – Mobile Marketplace</h3>
+                    <p>A secure e‑commerce platform with seamless checkout, AI recommendations, and push notifications.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==== REVIEWS ==== -->
+<section id="reviews" class="reviews">
+    <div class="container">
+        <h2 class="section-title">What Clients Say</h2>
+        <div class="grid">
+            <div class="review-card">
+                <p>Zipommy turned our vague idea into a polished product that exceeded expectations. Their communication was spot‑on.</p>
+                <h4>— Maya L., Founder, HealthCo</h4>
+            </div>
+            <div class="review-card">
+                <p>The game they built kept our users engaged for weeks. We saw a 250% increase in daily active users.</p>
+                <h4>— Carlos R., Creative Director, PlayHub</h4>
+            </div>
+            <div class="review-card">
+                <p>Fast delivery, clean code, and great post‑launch support. Highly recommended for any Android project.</p>
+                <h4>— Priya S., CTO, RetailX</h4>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==== CONTACT ==== -->
+<section id="contact" class="contact">
+    <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <textarea rows="5" placeholder="Tell us about your project..." required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<!-- ==== FOOTER ==== -->
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Zipommy Dealers. All rights reserved.</p>
+        <p>
+            <a href="privacy-policy.html" target="_blank">Privacy Policy</a> |
+            <a href="terms-of-service.html" target="_blank">Terms of Service</a>
+        </p>
+    </div>
+</footer>
+
+<!-- ==== SCROLL TO TOP BUTTON ==== -->
+<button id="topBtn" title="Back to top">&#8679;</button>
+
+<script>
+    // Mobile navigation toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    // Show/hide scroll‑to‑top button
+    const topBtn = document.getElementById('topBtn');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            topBtn.style.display = 'flex';
+        } else {
+            topBtn.style.display = 'none';
+        }
+    });
+    topBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Simple form handler (replace with real endpoint)
+    const form = document.querySelector('.contact form');
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        alert('Thanks! Your message has been received.');
+        form.reset();
+    });
+</script>
+</body>
+</html>
